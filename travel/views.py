@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 
 # Import all the models created so far
-from .models import Traveler, Location, Destination, Review, Comment
+from .models import Traveler, Local, Location, Destination, Review, Comment
 
 # import User model
 from django.contrib.auth.models import User
@@ -68,6 +68,7 @@ def create(request):
         email = request.POST['email']
         password = request.POST['password']
         traveler_yet = request.POST['coder_yet_checkbox']
+        local = request.POST['local_checkbox']
 
         if username is not None and email is not None and password is not None: # checking that they are not None
             if not username or not email or not password: # checking that they are not empty
@@ -79,6 +80,9 @@ def create(request):
             # save our new user in the User model
             user = User.objects.create_user(username, email, password)
             traveler = Traveler.objects.create(user= user, traveler_yet = traveler_yet).save()
+            user.save()
+
+            local = Local.objects.create(user= user, local = local).save()
             user.save()
 
             login(request, user, backend="django.contrib.auth.backends.ModelBackend")

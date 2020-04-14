@@ -24,5 +24,9 @@ I want a destination to be displayed with all of its features
 So that I can see the location, interesting features, and other descriptions about a destination.
 Route: show → views.show_destination → show_destination.html
 
+Feature: Local life
+As an authenticated user of the web site
+I want to be able to log in and sign up as a local so that I can inform travelers about my home land
+So that they know not just all of the rules and regulations to follow but also to explore more of the local life
 
 # source djangoenv/Scripts/activate
